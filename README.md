@@ -64,30 +64,7 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
 
 ## System Architecture
 
-```plaintext
-+---------------+      HTTP      +---------------------+      MQTT      +----------+
-| ESP32-CAM     | <------------> | Custom Web UI       |                | Motors   |
-| - Captures    |                | (Control & Video)   |                +----------+
-|   Video       |                +---------------------+                    |
-| - HTTP POST   |                                                        
-|   to Face     |                                                        
-|   Detection   |                                                        
-+-------+-------+                                                        
-        |                                                               
-        | Frame                                                         
-        v                                                               
-+----------------------++         +---------------------+     +-------------------+
-| Face Detection Server|| ------> | Face Recognition    | --> | Scoring & Alerts  |
-+----------------------++         | Server              |     | (Python Scripts)  |
-        | Data                                               |---> Email Alerts      
-        v                                                   |                     
-+----------------------+                                  |                     
-| InfluxDB             | <--------- Sensor & Score Data ---+                     
-+----------------------+                                                         
-        ^                                                                       
-        | Grafana Dashboards                                                   
-        +----------------------------------------------------------------------+
-```
+(Coming Soon)
 
 ---
 
