@@ -173,9 +173,7 @@ This script will publish random but realistic DHT11, photoresistor, and MQ135 re
 
 ---
 
-## License
 
-This project is released under the MIT License. See `LICENSE` for details.
 
 ---
 
