@@ -81,7 +81,7 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
    * Python 3.8+ with dependencies:
 
      ```bash
-     pip install opencv-python influxdb-client flask smtplib
+     pip install opencv-python influxdb-client flask 
      ```
 
 ### Steps
