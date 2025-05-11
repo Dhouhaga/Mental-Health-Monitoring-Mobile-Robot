@@ -1,4 +1,4 @@
-# ESP32-CAM Mental Health Monitoring Mobile Robot
+# Mental Health Monitoring Mobile Robot
 
 A mobile four-wheeled robot based on ESP32-CAM that collects environmental and facial data, computes mental health scores, visualizes them in real time with InfluxDB and Grafana, and sends alerts when scores drop below defined thresholds.
 
