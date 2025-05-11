@@ -48,8 +48,8 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
   * ESP8266 Arduino sketch (or Python simulation) for sensors
 * **Back-End Servers**:
 
-  * Local Face Detection Server (e.g., OpenCV)
-  * Local Face Recognition Server (e.g., FaceNet)
+  * Local Face Detection Server 
+  * Local Face Recognition Server 
 * **Data Storage**:
 
   * InfluxDB (time-series database)
