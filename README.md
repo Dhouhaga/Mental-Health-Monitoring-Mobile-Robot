@@ -14,20 +14,6 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
 
 ---
 
-## Table of Contents
-
-1. [Hardware Components](#hardware-components)
-2. [Software Stack](#software-stack)
-3. [System Architecture](#system-architecture)
-4. [Setup & Installation](#setup--installation)
-5. [Usage](#usage)
-6. [Configuration](#configuration)
-7. [Simulated Sensor Data](#simulated-sensor-data)
-8. [License](#license)
-9. [Acknowledgements](#acknowledgements)
-
----
-
 ## Hardware Components
 
 * **Robot Platform**: 4-wheel chassis with motor drivers
@@ -49,7 +35,7 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
 * **Back-End Servers**:
 
   * Local Face Detection Server 
-  * Local Face Recognition Server 
+  * Local Face Recognition and Emotional Analysis Server 
 * **Data Storage**:
 
   * InfluxDB (time-series database)
@@ -59,12 +45,6 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
 * **Alerts**:
 
   * Python script using `smtplib` for threshold-based email notifications
-
----
-
-## System Architecture
-
-(Coming Soon)
 
 ---
 
@@ -130,7 +110,7 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
 
 ## Configuration
 
-Edit `config.py` (or `config.h` in Arduino sketches) to set:
+Edit :
 
 * InfluxDB URL, bucket, organization, token
 * Thresholds for `warning_score` and `critical_score`
@@ -143,7 +123,7 @@ Edit `config.py` (or `config.h` in Arduino sketches) to set:
 If using simulation, run:
 
 ```bash
-python simulate_sensors.py --interval 10
+python simulate_sensors.py 
 ```
 
 This script will publish random but realistic DHT11, photoresistor, and MQ135 readings to InfluxDB every 10 seconds.
@@ -151,10 +131,3 @@ This script will publish random but realistic DHT11, photoresistor, and MQ135 re
 ---
 
 
-
----
-
-## Acknowledgements
-
-* Inspired by IoT & robotics communities
-* Uses open-source libraries: Arduino, OpenCV, InfluxDB, Grafana
