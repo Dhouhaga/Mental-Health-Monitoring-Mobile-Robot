@@ -87,7 +87,7 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
 3. **Firmware**:
 
    * Flash `esp32cam/esp32cam.ino` with your bucket URL, token, and thresholds.
-   * Flash `esp8266/sensors.ino` (or run `simulate_sensors.py`) to send sensor readings to InfluxDB.
+   * Flash `esp8266/sensors.ino` (or run `esp8266-simulator.py`) to send sensor readings to InfluxDB.
 
 4. **Web UI**:
 
