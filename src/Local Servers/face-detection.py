@@ -10,17 +10,16 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # Initialize Firebase
-cred = credentials.Certificate(r"C:\Users\USER\Documents\ICE3\Sem2\IoT\Project\iot-projects-6ba0c-firebase-adminsdk-fbsvc-d449788963.json")
+cred = credentials.Certificate("path") 
  
 firebase_admin.initialize_app(cred, {
-   'databaseURL': 'https://iot-projects-6ba0c-default-rtdb.europe-west1.firebasedatabase.app/' 
+   'databaseURL': 'URL' 
 })
 
-FACE_RECOG_URI = 'ws://localhost:8002/'
+FACE_RECOG_URI = 'ws://localhost:8002/' # My case 
 frame_queue: asyncio.Queue[bytes] = asyncio.Queue()
 
 async def forwarder():
-    """Persistent connection to face-recog server, draining the frame_queue."""
     while True:
         try:
             logging.info("Connecting to face-recognition WS…")
@@ -48,7 +47,7 @@ def get_local_ip():
         s.close()
 
 async def process_image(websocket):
-    """WebSocket server handler: detect faces, enqueue frames."""
+    # WebSocket server handler: detect faces, enqueue frames 
     face_cascade = cv2.CascadeClassifier(
         cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
     )
@@ -72,7 +71,7 @@ async def main():
     asyncio.create_task(forwarder())
 
     # 2) Publish our FD server IP
-    ip = get_local_ip() + ":8765"
+    ip = get_local_ip() + ":8765" # Modify port if necessary, am using 8765 on the ESP32-CAM so am sending a complete ip:port to connect 
     db.reference("/server/fd_ip").set(ip)
     logging.info(f"Face-detect server IP → Firebase: {ip}")
 
