@@ -41,7 +41,7 @@ from(bucket: \"bott\")
                 with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
                     smtp.login(EMAIL_SENDER, EMAIL_PASS)
                     smtp.send_message(msg)
-                print("Alert sent")
+                print("Alert sent!")
 
 if __name__ == "__main__":
     print("Starting continuous alert checker (press Ctrl+C to stop)...")
