@@ -11,19 +11,19 @@ from firebase_admin import credentials, db
 
 # Initialize Firebase app
 cred = credentials.Certificate(
-    r"C:\Users\USER\Documents\ICE3\Sem2\IoT\Project\iot-projects-6ba0c-firebase-adminsdk-fbsvc-d449788963.json"
+    "PATH"
 )
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://iot-projects-6ba0c-default-rtdb.europe-west1.firebasedatabase.app/'
+    'databaseURL': 'URL'
 })
 
 
 ref = db.reference('sensor_data')
 
 # influx
-token = "tMkQii-E0JYGHOnevmLO7Wnf5P0lQc6Qeh7vNpbMB90jUHcLgJHvdS16l7snbMJN8m7Ngc18a-CcCq3engj6ug=="
-org = "iot"
-bucket = "bott"
+token = ""
+org = ""
+bucket = ""
 url = "http://localhost:8086"
 
 client = InfluxDBClient(url=url, token=token, org=org)
