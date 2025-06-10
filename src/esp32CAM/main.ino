@@ -17,21 +17,16 @@ WebSocketsServer commandWebSocket = WebSocketsServer(81);
 WebSocketsServer videoWebSocket = WebSocketsServer(82); 
 
 // Wifi Crdentials 
-/*
-const char* ssid = "TT_62F8";
-const char* password = "gannjvd19b";
-*/
-
-const char* ssid = "dg";
-const char* password = "1dhouhafr";
+const char* ssid = "";
+const char* password = "";
 
 WiFiClient client;
 
 char serverUrl[256] = {0}; // Adjust size based on expected URL length
 
 // Firebase credentials
-#define FIREBASE_HOST "iot-projects-6ba0c-default-rtdb.europe-west1.firebasedatabase.app"
-#define FIREBASE_AUTH "JiOh1j4PsSfKXEtYJbxubsUVSWpd3UarFalfOjXo"
+#define FIREBASE_HOST ""
+#define FIREBASE_AUTH ""
 // Declare Firebase objects
 FirebaseData firebaseData;
 FirebaseConfig firebaseConfig;
@@ -79,19 +74,6 @@ bool face_detection_enabled = false;
 
 void initMotors()
 {
-
-  /* Attaching the channel to the GPIO to be controlled */
-  /* ledcAttach(GPIO, freq, resolution) */
- /* ledcAttach(inh1, 2000, 8);
-  ledcAttach(inh2, 2000, 8);
-  ledcAttach(inh3, 2000, 8);
-  ledcAttach(inh4, 2000, 8);
-  //ledcAttach(ENA, 1000, 8);
-  //ledcAttach(ENB, 1000, 8);*/
-
-  /*ledcWrite(ENA, speed);  // Enable right motors
-  ledcWrite(ENB, speed);  // Enable left motors*/
-
   pinMode(inh1, OUTPUT);
   pinMode(inh2, OUTPUT);
   pinMode(inh3, OUTPUT);
@@ -161,10 +143,6 @@ void videoWebSocketEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t le
             
         case WStype_CONNECTED:
             Serial.printf("[VID][%u] Client connected\n", num);
-            break;
-            
-        case WStype_BIN:
-            // Optional: Handle binary messages from client
             break;
     }
 }
@@ -265,7 +243,7 @@ void setup() {
         Serial.println(firebaseData.errorReason());
     }
 
-    // After fetching serverUrl in setup()
+    // Fet face detection server ip
     if (Firebase.getString(firebaseData, "/server/fd_ip")) {
         String fd_ip = firebaseData.stringData();
         int colonIndex = fd_ip.indexOf(':');
@@ -279,26 +257,14 @@ void setup() {
         Serial.printf("Face Detection Server: %s:%d\n", fd_server_ip, fd_server_port);
     }
     else{
-      Serial.print("face detection server ip: ");
-      String fd_ip;
-        fd_ip = Serial.readStringUntil('\n');  // Blocks until Enter is pressed
-        Serial.print("You entered: ");
-        Serial.println(fd_ip);
-        int colonIndex = fd_ip.indexOf(':');
-        if (colonIndex != -1) {
-            strncpy(fd_server_ip, fd_ip.substring(0, colonIndex).c_str(), sizeof(fd_server_ip));
-            fd_server_port = fd_ip.substring(colonIndex + 1).toInt();
-        } else {
-            strncpy(fd_server_ip, fd_ip.c_str(), sizeof(fd_server_ip));
-            fd_server_port = 83;  // Default port
-        }
-        Serial.printf("Face Detection Server: %s:%d\n", fd_server_ip, fd_server_port);
-      }
+        Serial.printf("ERRO getting Face Detection Server IP !\n");
+    }
   startCameraServer();/* Starting camera server */
 
   Serial.print("Camera Ready! Use 'http://"); Serial.print(WiFi.localIP());Serial.println("' to connect");
 
-  fdClient.begin("192.168.43.252", 8765, "/");
+  // hardcoded face detection server ip (for testing)
+  fdClient.begin("192.168.x.x", 8765, "/");
   fdClient.onEvent([](WStype_t type, uint8_t *payload, size_t length) {
     switch (type) {
         case WStype_DISCONNECTED:
@@ -306,16 +272,6 @@ void setup() {
             break;
         case WStype_CONNECTED:
             Serial.println("FD WebSocket Connected!");
-            break;
-        case WStype_TEXT: {
-            // Parse JSON
-            DynamicJsonDocument doc(256);
-            deserializeJson(doc, payload, length);
-            bool facesDetected = doc["faces_detected"];
-            
-            // Send status to command WebSocket clients
-            String msg = "face_status:" + String(facesDetected ? "1" : "0");
-            commandWebSocket.broadcastTXT(msg);
             break;
         }
     }
@@ -333,7 +289,6 @@ void setup() {
     
 }
 
-// Add this global variable at the top
 unsigned long lastFaceDetectTime = 0;
 
 void loop() {
@@ -345,7 +300,7 @@ void loop() {
     // Send video frame
     videoWebSocket.broadcastBIN(fb->buf, fb->len);
 
-    // Conditionally send to face detection server
+    // Send to face detection server every prd of time
     if (face_detection_enabled && fdClient.isConnected()) {
       if (millis() - lastFaceDetectTime >= 1000) { // ~15 FPS
         fdClient.sendBIN(fb->buf, fb->len);
