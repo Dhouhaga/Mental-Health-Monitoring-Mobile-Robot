@@ -123,7 +123,7 @@ Edit :
 If using simulation, run:
 
 ```bash
-python simulate_sensors.py 
+python ESP8266-Simulator.py 
 ```
 
 This script will publish random but realistic DHT11, photoresistor, and MQ135 readings to InfluxDB every 10 seconds.
