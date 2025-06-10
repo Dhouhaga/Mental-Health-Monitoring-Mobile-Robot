@@ -41,7 +41,7 @@ A mobile four-wheeled robot based on ESP32-CAM that collects environmental and f
   * InfluxDB (time-series database)
 * **Visualization**:
 
-  * Grafana dashboards (global and per-ID panels, Weather Data [Temperature, Humidity, Air Quality, ...])
+  * Grafana dashboards [global and per-ID panels, Weather Data (Temperature, Humidity, Air Quality, ...)]
 * **Alerts**:
 
   * Python script using `smtplib` for threshold-based email notifications
