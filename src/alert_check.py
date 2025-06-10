@@ -5,13 +5,13 @@ import time
 
 # --- Config ---
 INFLUX_URL = "http://localhost:8086"
-TOKEN= "tMkQii-E0JYGHOnevmLO7Wnf5P0lQc6Qeh7vNpbMB90jUHcLgJHvdS16l7snbMJN8m7Ngc18a-CcCq3engj6ug=="
-ORG = "iot"
-BUCKET = "bott"
-EMAIL_RECEIVER = "dhouhaguoud@gmail.com"
-EMAIL_SENDER = "dhouhaguoud@gmail.com"
-EMAIL_PASS = "xage nbeu fmoc fppl" 
-THRESHOLD = -2
+TOKEN= ""
+ORG = ""
+BUCKET = ""
+EMAIL_RECEIVER = ""
+EMAIL_SENDER = ""
+EMAIL_PASS = "" 
+THRESHOLD = -200
 POLL_INTERVAL = 60  
 
 client = InfluxDBClient(url=INFLUX_URL, token=TOKEN, org=ORG)
