@@ -214,7 +214,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 )rawliteral";
 
 
-// Update the index_handler to replace %IP% with actual IP
+// replace %IP% with actual IP
 static esp_err_t index_handler(httpd_req_t *req){
   
     String html = String(INDEX_HTML);
