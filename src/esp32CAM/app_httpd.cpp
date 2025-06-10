@@ -103,13 +103,13 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
       window.addEventListener('DOMContentLoaded', () => {
         // 1) Initialize Firebase
         const firebaseConfig = {
-          apiKey: "AIzaSyDWUXyIB7vZVsu_zZwasudVhwORwcbmk_4",
-          authDomain: "iot-projects-6ba0c.firebaseapp.com",
-          databaseURL: "https://iot-projects-6ba0c-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "iot-projects-6ba0c",
-          storageBucket: "iot-projects-6ba0c.firebasedatabase.app",
-          messagingSenderId: "375577474606",
-          appId: "1:375577474606:web:acce00638ed57564a2d1bf"
+          apiKey: "",
+          authDomain: "",
+          databaseURL: "",
+          projectId: "",
+          storageBucket: "",
+          messagingSenderId: "",
+          appId: ""
         };
         firebase.initializeApp(firebaseConfig);
 
