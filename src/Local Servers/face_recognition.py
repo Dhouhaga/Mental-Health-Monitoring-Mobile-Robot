@@ -15,17 +15,17 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 # Initialize Firebase
 cred = credentials.Certificate(
-    r"C:\Users\USER\Documents\ICE3\Sem2\IoT\Project\iot-projects-6ba0c-firebase-adminsdk-fbsvc-d449788963.json"
+    "PATH"
 )
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://iot-projects-6ba0c-default-rtdb.europe-west1.firebasedatabase.app/'
+    'databaseURL': 'URL'
 })
 
 # influx
-token = "tMkQii-E0JYGHOnevmLO7Wnf5P0lQc6Qeh7vNpbMB90jUHcLgJHvdS16l7snbMJN8m7Ngc18a-CcCq3engj6ug=="
-org = "iot"
-bucket = "bott"
-url = "http://localhost:8086"
+token = ""
+org = ""
+bucket = ""
+url = ""
 
 client = InfluxDBClient(url=url, token=token, org=org)
 write_api = client.write_api(write_options=SYNCHRONOUS)
@@ -136,35 +136,3 @@ async def serve():
 if __name__ == '__main__':
     asyncio.run(serve())
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''while True:
-        point = (
-            Point("mentalHealth")
-            .field('globalScore', float(random.randint(0, 100)))
-        )
-        write_api.write(bucket=bucket, org=org, record=point)
-        print("data sent to influx")
-
-        point = (
-            Point("mentalHealth")
-            .field("person1", float(random.randint(0, 100)))
-        )
-        write_api.write(bucket=bucket, org=org, record=point)
-        print("data sent to influx")
-        time.sleep(1)'''
