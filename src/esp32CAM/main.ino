@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <FirebaseESP32.h>
 #include <WebSocketsServer.h>
-#include <WebSocketsClient.h>  // Add WebSocket client support
+#include <WebSocketsClient.h>  
 #include <ArduinoJson.h>
 
 WebSocketsClient fdClient;  // Face detection WebSocket client
@@ -22,7 +22,7 @@ const char* password = "";
 
 WiFiClient client;
 
-char serverUrl[256] = {0}; // Adjust size based on expected URL length
+char serverUrl[256] = {0}; 
 
 // Firebase credentials
 #define FIREBASE_HOST ""
@@ -59,7 +59,7 @@ const int inh1 = 14;
 const int inh2 = 15;
 const int inh3 = 13;
 const int inh4 = 12;
-const int FlashPin = 4; // 4 for flash led or 33 for normal led
+const int FlashPin = 4; 
 
 const uint8_t motorPatterns[6][4] = {
     {0,0,0,0},     // Stop
@@ -156,8 +156,6 @@ void sendFrameOverWebSocket() {
     esp_camera_fb_return(fb);
 }
 
-
-
 void setup() {
   Serial.begin(115200);
   Serial.setDebugOutput(false);
@@ -213,7 +211,6 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
-    //yield(); // Prevent WDT reset
 }
   Serial.println("");
   Serial.println("WiFi connected");
